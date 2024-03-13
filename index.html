@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding-top: 30px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .seats_outer{
+            display: flex;
+            justify-content: center;
+        }
+        .all_seats{
+            width: 12vh;
+            display: block;
+            clear: both;
+        }
+        .seat{
+            height: 12vh;
+            width: 12vh;
+            border: 1px solid black;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11pt;
+        }
+        .triple{
+            margin-top: 100px;
+        }
+        button{
+            
+            width: 30vh;
+            height: 9vh;
+            margin: 10px;
+        }
+        .outer_button{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: absolute;
+            bottom: 30px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="seats_outer">
+        <div class = "all_seats">
+            <div class = "double">
+                <div class="seat" id="s1"></div>
+                <div class="seat" id="s2"></div>
+            </div>
+            <div class="triple">
+                <div class="seat" id="s3"></div>
+                <div class="seat" id="s4"></div>
+                <div class="seat" id="s5"></div>
+            </div>
+        </div>
+    </div>
+    <div class="outer_button">
+        <button onclick = "losuj()">Losuj miejsca</button>
+    </div>
+<script>
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    seats = document.querySelectorAll(".seat");
+    console.log(seats)
+    async function losuj(){
+        for(i = 0; i<5; i++){
+            seats[i].innerHTML = "";
+        }
+        persons = ["felacik", "śmierdziuszek", "bolek", "parasoleczka", "kastracik", "espadrylek"]
+        for(i = 0; i<5; i++){
+            randint = Math.floor(Math.random() * persons.length);
+            rand_person = persons[randint];
+            seats[i].innerHTML = rand_person;
+            console.log(randint);
+            persons.splice(randint, 1);
+            await sleep(200);
+        }
+    }
+</script>
+</body>
+</html>
